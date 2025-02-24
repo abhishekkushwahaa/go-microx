@@ -9,20 +9,21 @@
 
 ## Features
 
-- **Interactive CLI with PromptUI**: User-friendly selection for project templates, database choices, and configurations.
+- **Interactive CLI with PromptUI**: User-friendly selection for project templates, database choices, HTTP routers, and configurations.
 - **Automated Boilerplate Generation**: Quickly scaffold a complete microservices project.
 - **Multiple Project Templates**: Choose from predefined templates like E-commerce, Video Streaming, Food Delivery, and more.
 - **Database Support**: Select from PostgreSQL, MongoDB, MySQL, SQLite, or no database.
-- **Authentication Options**: Supports JWT, OAuth, and API Key authentication mechanisms.
+- **Authentication Options**: Supports JWT, OAuth, API Key, WebAuthn (upcoming).
+- **HTTP Router Selection**: Choose from Gin, Fiber, Chi, Echo, Mux, or custom routers.
+- **gRPC Support**: Generate microservices with gRPC communication.
 - **Pre-configured Docker Setup**: Seamless containerization with Docker.
-- **Customizable**: Extend and modify configurations based on your project needs.
 
 ## Installation
 
 To install go-microx, use the following command:
 
 ```sh
-go install github.com/abhishekkushwahaa/gomicrox@latest
+go install github.com/abhishekkushwahaa/go-microx@latest
 ```
 
 ## Usage
@@ -37,7 +38,7 @@ gomicrox new
 
 ### Interactive CLI Flow
 
-The CLI will guide you through project creation using **promptui**, displaying interactive options for selecting a template, naming your project, and choosing a database.
+The CLI will guide you through project creation using **promptui**, displaying interactive options for selecting a template, naming your project, choosing a database, and selecting an HTTP router.
 
 #### Example Interaction:
 
@@ -50,6 +51,14 @@ The CLI will guide you through project creation using **promptui**, displaying i
 
 ? Enter project name: myshop
 
+? Select an HTTP Router:
+  ▸ Gin
+    Fiber
+    Chi
+    Echo
+    Mux
+    Custom
+
 ? Select a database:
   ▸ PostgreSQL
     MongoDB
@@ -60,6 +69,7 @@ The CLI will guide you through project creation using **promptui**, displaying i
 🚀 Creating project: myshop
 📦 Type: E-commerce
 🫙 Database: PostgreSQL
+🔌 Router: Gin
 ✅ Project myshop has been successfully created!
 ```
 
@@ -97,23 +107,24 @@ myvideo/ (Video Streaming)
 ├── api-gateway/
 ```
 
-## Roadmap
+## Future
 
-- **More Industry Templates**: Add support for FinTech, SaaS, and more.
+- **More Industry Templates**: Add support for FinTech, SaaS, IoT, Healthcare, etc.
 - **gRPC Integration**: Support for high-performance RPC communication.
-- **CI/CD Templates**: Pre-configured pipelines for seamless deployment.
-- **Kubernetes Helm Charts**: Simplified Kubernetes deployments.
-- **Cloud Deployment Support**: AWS, GCP, and Azure integrations.
+- **Advanced Authentication**: Implement WebAuthn for biometric authentication.
+- **Service Mesh Support**: Integrate Istio and Linkerd.
+- **Event-Driven Architecture**: Native support for Kafka, NATS, and RabbitMQ.
+- **Service Discovery & API Gateway**: Support for Consul, Nginx, and Traefik.
+- **Load Balancing**: Future support for Nginx, Traefik, and Envoy.
+- **Observability & Monitoring**: Integrate OpenTelemetry, Prometheus, and Grafana.
+- **CI/CD Enhancements**: More pre-configured pipelines for deployment.
+- **Kubernetes Helm Charts**: Easy orchestration for microservices.
+- **Cloud Deployment Support**: AWS, GCP, and Azure integration.
+- **Secure Storage Mechanism**: Encrypted data storage and retrieval.
 
 ## Contributing
 
-We welcome contributions from the community! Feel free to **submit issues, feature requests, or pull requests** to help improve **go-microx**.
-
-### How to Contribute:
-
-1. Fork the repository and create a new branch.
-2. Implement your changes with clear commit messages.
-3. Submit a pull request with a detailed description.
+We welcome contributions from the community! Feel free to **submit issues, feature requests, or pull requests** to help improve **go-microx**. Your contributions are highly valued, but please follow the [Contribution Guidelines](CONTRIBUTING.md).
 
 ## License
 

@@ -1,10 +1,9 @@
 package cmd
 
 import (
-	"fmt"
 	"os"
-	"path/filepath"
 
+	"github.com/abhishekkushwahaa/go-microx/cmd/generator"
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
@@ -18,12 +17,7 @@ var newCmd = &cobra.Command{
 		projectName := getProjectName()
 		database := selectDatabase()
 
-		color.Cyan("\n🚀 Creating project: %s", projectName)
-		color.Green("📦 Type: %s", projectType)
-		color.Yellow("🫙  Database: %s\n", database)
-
-		createProjectStructure(projectType, projectName, database)
-		color.Magenta("✅ Project %s has been successfully created!\n", projectName)
+		generator.GenerateProject(projectType, projectName, database)
 	},
 }
 
@@ -33,7 +27,7 @@ func init() {
 
 // Prompt user to select a project type
 func selectProjectType() string {
-	templates := []string{"E-commerce", "Video Streaming", "Food Delivery", "Custom"}
+	templates := []string{"E-commerce", "Video-Streaming", "Food-Delivery", "Custom"}
 
 	prompt := promptui.Select{
 		Label:  "💡 " + color.HiCyanString("Select a project template:"),
@@ -83,46 +77,4 @@ func selectDatabase() string {
 	}
 
 	return result
-}
-
-// Create project structure based on selections
-func createProjectStructure(projectType, projectName, database string) {
-	basePath := filepath.Join(".", projectName)
-	os.MkdirAll(basePath, os.ModePerm)
-
-	services := getServicesForProject(projectType)
-	for _, service := range services {
-		servicePath := filepath.Join(basePath, service)
-		os.MkdirAll(servicePath, os.ModePerm)
-
-		mainFile := filepath.Join(servicePath, "main.go")
-		err := os.WriteFile(mainFile, []byte(fmt.Sprintf("package main\n\nfunc main() {\n\tprintln(\"%s service running...\")\n}", service)), 0644)
-		if err != nil {
-			color.Red("❌ Error creating service file: %v", err)
-		}
-	}
-
-	// Create database configuration file
-	if database != "None" {
-		configPath := filepath.Join(basePath, "configs")
-		os.MkdirAll(configPath, os.ModePerm)
-
-		dbConfigFile := filepath.Join(configPath, "db_config.yaml")
-		dbConfigContent := fmt.Sprintf("database: %s\nhost: localhost\nport: 5432\nuser: root\npassword: secret", database)
-		os.WriteFile(dbConfigFile, []byte(dbConfigContent), 0644)
-	}
-}
-
-// Get predefined services based on project type
-func getServicesForProject(projectType string) []string {
-	switch projectType {
-	case "E-commerce":
-		return []string{"user-service", "product-service", "order-service", "cart-service", "payment-service"}
-	case "Video Streaming":
-		return []string{"video-service", "user-service", "subscription-service"}
-	case "Food Delivery":
-		return []string{"restaurant-service", "order-service", "delivery-service"}
-	default:
-		return []string{"custom-service1", "custom-service2"}
-	}
 }
