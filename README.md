@@ -66,10 +66,17 @@ The CLI will guide you through project creation using **promptui**, displaying i
     SQLite
     None
 
+? Select an authentication method:
+  ▸ None
+    JWT
+    OAuth
+    API Key
+
 🚀 Creating project: myshop
 📦 Type: E-commerce
-🫙 Database: PostgreSQL
 🔌 Router: Gin
+🫙 Database: PostgreSQL
+🔐 Authentication: None
 ✅ Project myshop has been successfully created!
 ```
 
