@@ -9,9 +9,10 @@
 
 ## Features
 
+- **Interactive CLI with PromptUI**: User-friendly selection for project templates, database choices, and configurations.
 - **Automated Boilerplate Generation**: Quickly scaffold a complete microservices project.
 - **Multiple Project Templates**: Choose from predefined templates like E-commerce, Video Streaming, Food Delivery, and more.
-- **Database Support**: Choose from PostgreSQL, MongoDB, MySQL, and more.
+- **Database Support**: Select from PostgreSQL, MongoDB, MySQL, SQLite, or no database.
 - **Authentication Options**: Supports JWT, OAuth, and API Key authentication mechanisms.
 - **Pre-configured Docker Setup**: Seamless containerization with Docker.
 - **Customizable**: Extend and modify configurations based on your project needs.
@@ -21,27 +22,45 @@
 To install go-microx, use the following command:
 
 ```sh
-go get github.com/abhishekkushwahaa/gomicrox@latest
+go install github.com/abhishekkushwahaa/gomicrox@latest
 ```
 
 ## Usage
 
 ### Create a New Microservices Project
 
-To generate a new microservices project, run:
+Run the following command to start an interactive project setup:
 
 ```sh
-gomicrox new <project-type> <project-name> --db=postgres --auth=jwt
+gomicrox new
 ```
 
-#### Example:
+### Interactive CLI Flow
 
-```sh
-gomicrox new ecommerce myshop --db=postgres --auth=jwt
+The CLI will guide you through project creation using **promptui**, displaying interactive options for selecting a template, naming your project, and choosing a database.
+
+#### Example Interaction:
+
 ```
+? Select a project template:
+  ▸ E-commerce
+    Video Streaming
+    Food Delivery
+    Custom
 
-```sh
-gomicrox new videostream myvideo --db=mongodb --auth=oauth
+? Enter project name: myshop
+
+? Select a database:
+  ▸ PostgreSQL
+    MongoDB
+    MySQL
+    SQLite
+    None
+
+🚀 Creating project: myshop
+📦 Type: E-commerce
+🫙 Database: PostgreSQL
+✅ Project myshop has been successfully created!
 ```
 
 ### Available Project Templates
@@ -56,25 +75,25 @@ Upon execution, go-microx generates the following structure based on the selecte
 
 ```
 myshop/ (E-commerce)
-├── user/
+├── user-service/
 │   ├── main.go
 │   ├── Dockerfile
 │   ├── config.yaml
-├── product/
-├── order/
-├── payment/
-├── cart/
+├── product-service/
+├── order-service/
+├── payment-service/
+├── cart-service/
 ├── api-gateway/
 ├── configs/
 ```
 
 ```
 myvideo/ (Video Streaming)
-├── user/
-├── video-upload/
-├── transcoding/
-├── content-delivery/
-├── analytics/
+├── user-service/
+├── video-upload-service/
+├── transcoding-service/
+├── content-delivery-service/
+├── analytics-service/
 ├── api-gateway/
 ```
 
