@@ -128,6 +128,7 @@ myvideo/ (Video Streaming)
 - **Kubernetes Helm Charts**: Easy orchestration for microservices.
 - **Cloud Deployment Support**: AWS, GCP, and Azure integration.
 - **Secure Storage Mechanism**: Encrypted data storage and retrieval.
+- **Concurrency**: Efficient support for handling concurrent tasks and processes to improve scalability and responsiveness.
 
 ## Contributing
 
