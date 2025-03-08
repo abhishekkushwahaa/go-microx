@@ -11,13 +11,15 @@ import (
 )
 
 // GenerateProject copies the selected template to the target directory
-func GenerateProject(projectType, projectName, database string) {
+func GenerateProject(projectType, projectName, database, httpRouter, authMethod string) {
 	templatePath := filepath.Join("templates", projectType)
 	targetPath := filepath.Join(".", projectName)
 
 	color.Cyan("📂 Creating project: %s", projectName)
 	color.Green("📦 Type: %s", projectType)
 	color.Yellow("🫙  Database: %s", database)
+	color.Blue("🌐 HTTP Router: %s", httpRouter)
+	color.White("🔑 Auth Method: %s", authMethod)
 
 	// Copy template files to target project
 	err := copyDirectory(templatePath, targetPath)
@@ -26,8 +28,17 @@ func GenerateProject(projectType, projectName, database string) {
 		return
 	}
 
-	// Replace placeholders inside the project
-	replacePlaceholders(targetPath, projectName, database)
+	if database != "None" {
+		dbTemplate := filepath.Join("cmd", "built", "database.tpl")
+		dbTarget := filepath.Join(targetPath, "internal", "database", "db.go")
+		if err := os.MkdirAll(filepath.Dir(dbTarget), os.ModePerm); err != nil {
+			color.Red("❌ Failed to create directories: %v", err)
+			return
+		}
+		processDatabaseTemplate(dbTemplate, dbTarget, projectName, database)
+		replacePlaceholders(targetPath, projectName, database, httpRouter, authMethod)
+	}
+	replacePlaceholders(targetPath, projectName, database, httpRouter, authMethod)
 
 	color.Magenta("✅ Project %s has been successfully created!\n", projectName)
 }
@@ -54,7 +65,7 @@ func copyDirectory(src, dst string) error {
 }
 
 // Replace placeholders in files
-func replacePlaceholders(rootPath, projectName, database string) {
+func replacePlaceholders(rootPath, projectName, database, httpRouter, authMethod string) {
 	filepath.Walk(rootPath, func(path string, info fs.FileInfo, err error) error {
 		if err != nil || info.IsDir() {
 			return nil
@@ -67,6 +78,8 @@ func replacePlaceholders(rootPath, projectName, database string) {
 
 		updatedContent := strings.ReplaceAll(string(content), "{{PROJECT_NAME}}", projectName)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{DATABASE}}", database)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{HTTP_ROUTER}}", httpRouter)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{AUTH_METHOD}}", authMethod)
 
 		segments := strings.Split(path, string(os.PathSeparator))
 		if len(segments) > 1 {
