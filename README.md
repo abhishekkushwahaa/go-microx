@@ -105,13 +105,13 @@ myshop/ (E-commerce)
 ```
 
 ```
-myvideo/ (Video Streaming)
+myvideo/ (Video-Streaming)
 ├── user-service/
-├── video-upload-service/
-├── transcoding-service/
-├── content-delivery-service/
-├── analytics-service/
+├── video-service/
+├── subscription-service/
+├── recommendation-service/
 ├── api-gateway/
+├── configs/
 ```
 
 ## Future
