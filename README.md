@@ -45,8 +45,8 @@ The CLI will guide you through project creation using **promptui**, displaying i
 ```
 ? Select a project template:
   ▸ E-commerce
-    Video Streaming
-    Food Delivery
+    Video-Streaming
+    Food-Delivery
     Custom
 
 ? Enter project name: myshop

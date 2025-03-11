@@ -10,6 +10,19 @@ import (
 	"github.com/fatih/color"
 )
 
+func getMicroservices(projectType string) []string {
+	switch projectType {
+	case "E-commerce":
+		return []string{"user-service", "product-service", "order-service", "payment-service", "cart-service"}
+	case "Video-Streaming":
+		return []string{"user-service", "video-service", "subscription-service", "recommendation-service", "analytics-service"}
+	case "Food-Delivery":
+		return []string{"user-service", "restaurant-service", "order-service", "delivery-service", "payment-service"}
+	default:
+		return []string{"api-service"}
+	}
+}
+
 // GenerateProject copies the selected template to the target directory
 func GenerateProject(projectType, projectName, database, httpRouter, authMethod string) {
 	templatePath := filepath.Join("templates", projectType)
@@ -28,16 +41,23 @@ func GenerateProject(projectType, projectName, database, httpRouter, authMethod 
 		return
 	}
 
+	// Fetch microservices dynamically
+	microservices := getMicroservices(projectType)
+
 	if database != "None" {
-		dbTemplate := filepath.Join("cmd", "built", "database.tpl")
-		dbTarget := filepath.Join(targetPath, "internal", "database", "db.go")
-		if err := os.MkdirAll(filepath.Dir(dbTarget), os.ModePerm); err != nil {
-			color.Red("❌ Failed to create directories: %v", err)
-			return
+		for _, service := range microservices {
+			servicePath := filepath.Join(targetPath, service)
+			dbTemplate := filepath.Join("cmd", "built", "database.tpl")
+			dbTarget := filepath.Join(servicePath, "database", "db.go")
+
+			if err := os.MkdirAll(filepath.Dir(dbTarget), os.ModePerm); err != nil {
+				color.Red("❌ Failed to create directories for %s: %v", service, err)
+				return
+			}
+			processDatabaseTemplate(dbTemplate, dbTarget, service, database)
 		}
-		processDatabaseTemplate(dbTemplate, dbTarget, projectName, database)
-		replacePlaceholders(targetPath, projectName, database, httpRouter, authMethod)
 	}
+
 	replacePlaceholders(targetPath, projectName, database, httpRouter, authMethod)
 
 	color.Magenta("✅ Project %s has been successfully created!\n", projectName)

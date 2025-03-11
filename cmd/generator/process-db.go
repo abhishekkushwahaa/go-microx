@@ -52,7 +52,5 @@ func processDatabaseTemplate(templateFile, outputFile, projectName, database str
 		color.Red("❌ Failed to write output file: %v", err)
 		return err
 	}
-
-	color.Green("✅ Database configuration generated: %s", outputFile)
 	return nil
 }

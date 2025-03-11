@@ -1,8 +1,0 @@
-service_name: "app"
-port: 8080
-database:
-  type: "PostgreSQL"
-  host: "localhost"
-  port: 5432
-  user: "admin"
-  password: "password"
