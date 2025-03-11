@@ -11,7 +11,7 @@ import (
 
 // Function to process database template before writing
 func processDatabaseTemplate(templateFile, outputFile, projectName, database string) error {
-	tplContent, err := os.ReadFile(templateFile)
+	tmplContent, err := os.ReadFile(templateFile)
 	if err != nil {
 		color.Red("❌ Failed to read template file: %v", err)
 		return err
@@ -27,14 +27,14 @@ func processDatabaseTemplate(templateFile, outputFile, projectName, database str
 	}
 
 	// Parse and execute the template
-	tpl, err := template.New("database").Parse(string(tplContent))
+	tmpl, err := template.New("database").Parse(string(tmplContent))
 	if err != nil {
 		color.Red("❌ Failed to parse template: %v", err)
 		return err
 	}
 
 	var output bytes.Buffer
-	err = tpl.Execute(&output, data)
+	err = tmpl.Execute(&output, data)
 	if err != nil {
 		color.Red("❌ Failed to execute template: %v", err)
 		return err

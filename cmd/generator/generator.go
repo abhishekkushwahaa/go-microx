@@ -47,7 +47,7 @@ func GenerateProject(projectType, projectName, database, httpRouter, authMethod 
 	if database != "None" {
 		for _, service := range microservices {
 			servicePath := filepath.Join(targetPath, service)
-			dbTemplate := filepath.Join("cmd", "built", "database.tpl")
+			dbTemplate := filepath.Join("cmd", "built", "database.tmpl")
 			dbTarget := filepath.Join(servicePath, "database", "db.go")
 
 			if err := os.MkdirAll(filepath.Dir(dbTarget), os.ModePerm); err != nil {
