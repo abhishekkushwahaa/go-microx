@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -25,8 +26,20 @@ var newCmd = &cobra.Command{
 	},
 }
 
+// Version command
+const version = "v1.0.0"
+
+var vCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Show the version of go-microx",
+	Run: func(cmd *cobra.Command, args []string) {
+		fmt.Println(version)
+	},
+}
+
 func init() {
 	rootCmd.AddCommand(newCmd)
+	rootCmd.AddCommand(vCmd)
 }
 
 // Prompt user to select a project type
