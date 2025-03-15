@@ -1,0 +1,138 @@
+/* Theme Variables */
+:root {
+  --bg-light: #f4f4f4;
+  --text-light: #1a1a1a;
+  --card-bg-light: rgba(255, 255, 255, 0.9);
+  --icon-bg-light: #3b82f6;
+  --shadow-light: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  --bg-dark: #121212;
+  --text-dark: #f0f0f0;
+  --card-bg-dark: rgba(30, 30, 30, 0.9);
+  --icon-bg-dark: #9333ea;
+  --shadow-dark: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Light Mode */
+body.light {
+  --bg-color: var(--bg-light);
+  --text-color: var(--text-light);
+  --card-bg: var(--card-bg-light);
+  --icon-bg: var(--icon-bg-light);
+  --shadow: var(--shadow-light);
+}
+
+/* Dark Mode */
+body.dark {
+  --bg-color: var(--bg-dark);
+  --text-color: var(--text-dark);
+  --card-bg: var(--card-bg-dark);
+  --icon-bg: var(--icon-bg-dark);
+  --shadow: var(--shadow-dark);
+}
+
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Section Styling */
+.features-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Title */
+.features-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: var(--text-color);
+}
+
+.highlight {
+  color: var(--icon-bg);
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Modern Card Design */
+.feature-card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+/* Light Mode - Black Border */
+body.light .feature-card {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode - White Border */
+body.dark .feature-card {
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Hover Animation */
+.feature-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Icon Container */
+.feature-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--icon-bg);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* Light Mode Icons */
+body.light .feature-icon {
+  color: black;
+}
+
+/* Dark Mode Icons */
+body.dark .feature-icon {
+  color: white;
+}
+
+/* Icon Hover Effect */
+.feature-card:hover .feature-icon {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Text Styling */
+.feature-title {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: var(--text-color);
+}
+
+.feature-description {
+  color: var(--text-color);
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}

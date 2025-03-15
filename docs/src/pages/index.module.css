@@ -1,23 +1,93 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
-
+/* Hero Section */
 .heroBanner {
-  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
   text-align: center;
+  padding: 2rem;
+  transition: background-color 0.2s ease;
+  background: var(--hero-gradient);
+  color: var(--hero-text-light);
   position: relative;
   overflow: hidden;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+/* Light Mode */
+:root {
+  --hero-gradient: linear-gradient(135deg, #f0f0f0 0%, #dcdcdc 100%);
+  --hero-text-light: #000;
+  --hero-button-light: #007bff;
+}
+
+/* Dark Mode */
+[data-theme="dark"] {
+  --hero-gradient: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
+  --hero-text-light: #fff;
+  --hero-button-light: #00d1b2;
+}
+
+/* Subtle Animation */
+.heroBanner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.05), transparent);
+  animation: pulse 6s infinite linear;
+  z-index: 0;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 
-.buttons {
+/* Text */
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.heroButtons {
   display: flex;
-  align-items: center;
   justify-content: center;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.heroButton {
+  background: var(--hero-button-light);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: none;
+}
+
+/* Prevent color change and underline on hover */
+.heroButton:hover {
+  color: #fff;
+  background: var(--hero-button-light);
+  text-decoration: none;
 }

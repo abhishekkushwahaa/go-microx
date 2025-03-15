@@ -1,65 +1,61 @@
-import clsx from "clsx";
-import Heading from "@theme/Heading";
-import styles from "./styles.module.css";
+import { Cpu, Rocket, Layers, Code2, ShieldCheck, Zap } from "lucide-react";
+import "./HomepageFeatures.css";
 
-const FeatureList = [
+const features = [
   {
-    title: "Stop Reinventing, Start Building",
-    Svg: require("@site/static/img/micro.svg").default,
-    description: (
-      <>
-        Tired of setting up microservices from scratch every time? Gomicrox
-        eliminates the hassle by providing a scalable, production-ready
-        boilerplate—so you can focus on what truly matters.
-      </>
-    ),
+    title: "Instant Setup",
+    icon: Layers,
+    description:
+      "Spin up microservices instantly with GoMicrox's powerful scaffolding.",
   },
   {
-    title: "Rapid Development, Zero Overhead",
-    Svg: require("@site/static/img/micro.svg").default,
-    description: (
-      <>
-        Gomicrox automates the tedious setup of authentication, database
-        connections, and service communication. Spin up a microservices
-        architecture in minutes, not hours!
-      </>
-    ),
+    title: "Blazing Fast Deployment",
+    icon: Rocket,
+    description: "Deploy production-ready microservices in just a few clicks.",
   },
   {
-    title: "Built for Scale & Performance",
-    Svg: require("@site/static/img/micro.svg").default,
-    description: (
-      <>
-        Designed with Golang, Gomicrox ensures high performance, reliability,
-        and modularity—perfect for modern cloud-native applications.
-      </>
-    ),
+    title: "Optimized Performance",
+    icon: Cpu,
+    description:
+      "Leverage Golang’s speed for low-latency, high-performance apps.",
+  },
+  {
+    title: "Rock-Solid Security",
+    icon: ShieldCheck,
+    description:
+      "Built-in security ensures your architecture is always protected.",
+  },
+  {
+    title: "Seamless Integrations",
+    icon: Code2,
+    description: "Integrate with Docker, Kubernetes, and CI/CD out of the box.",
+  },
+  {
+    title: "Lightning Fast Prototyping",
+    icon: Zap,
+    description:
+      "Kickstart projects with pre-built templates and reduce dev time.",
   },
 ];
 
-function Feature({ Svg, title, description }) {
-  return (
-    <div className={clsx("col col--4")}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
-
 export default function HomepageFeatures() {
   return (
-    <section className={styles.features}>
-      <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
-          ))}
-        </div>
+    <section className="features-section">
+      <h2 className="features-title">
+        Supercharge Your Microservices with{" "}
+        <span className="highlight">GoMicrox</span>
+      </h2>
+
+      <div className="features-grid">
+        {features.map((feature, idx) => (
+          <div key={idx} className="feature-card">
+            <div className="feature-icon">
+              <feature.icon size={40} />
+            </div>
+            <h3 className="feature-title">{feature.title}</h3>
+            <p className="feature-description">{feature.description}</p>
+          </div>
+        ))}
       </div>
     </section>
   );

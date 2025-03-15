@@ -10,18 +10,15 @@ import styles from "./index.module.css";
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
+    <header className={clsx(styles.heroBanner)}>
+      <div className={styles.heroContainer}>
+        <Heading as="h1" className={styles.heroTitle}>
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
-          >
-            Gomicrox Tutorial - 5min ⏱️
+        <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+        <div className={styles.heroButtons}>
+          <Link className={styles.heroButton} to="/docs/intro">
+            🚀 Get Started with Gomicrox
           </Link>
         </div>
       </div>
@@ -33,8 +30,8 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title={`${siteConfig.title} | Build Microservices with Ease`}
+      description="Gomicrox helps you build scalable microservices effortlessly."
     >
       <HomepageHeader />
       <main>
