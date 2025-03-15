@@ -2,7 +2,7 @@
 
 <a href="https://linkedin.com/in/abhishekkushwahaa">![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin)</a>
 <a href="https://x.com/AbhishekKushwaa">![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x)</a>
-<a href="https://gomicrox.abhishekkushwaha.tech">![Docs](https://img.shields.io/badge/Website-FF4500?style=flat-square)</a>
+<a href="https://go-microx.vercel.app/docs/intro">![Docs](https://img.shields.io/badge/Website-FF4500?style=flat-square)</a>
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 **go-microx** is a powerful CLI tool designed to streamline the creation of scalable microservices architectures in Golang. It provides a well-structured setup tailored for various industries, including e-commerce, video streaming, food delivery, and more.
