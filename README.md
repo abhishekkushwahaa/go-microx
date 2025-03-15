@@ -33,7 +33,7 @@ go install github.com/abhishekkushwahaa/go-microx@latest
 Run the following command to start an interactive project setup:
 
 ```sh
-gomicrox new
+go-microx new
 ```
 
 ### Interactive CLI Flow

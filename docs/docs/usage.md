@@ -1,5 +1,5 @@
 # Usage 👋
 
 ```sh
-gomicrox new
+go-microx new
 ```

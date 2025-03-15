@@ -8,8 +8,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "gomicrox",
-	Short: "gomicrox - Microservices Generator",
+	Use:   "go-microx",
+	Short: "go-microx - Microservices Generator",
 	Run: func(cmd *cobra.Command, args []string) {
 		cyan := color.New(color.FgCyan).SprintFunc()
 		fmt.Println(cyan("MicroX - Generate microservices projects quickly!"))
