@@ -1,0 +1,27 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	{{DATABASE_IMPORT}}
+	{{ROUTER_IMPORT}}
+)
+
+func main() {
+	fmt.Println("{{PROJECT_NAME}} - {{SERVICE_NAME}} running...")
+
+	// Initialize Database
+	db, err := database.InitDB()
+	if err != nil {
+		log.Fatalf("Failed to initialize database: %v", err)
+	}
+	defer db.Close()
+
+	// Initialize Routes
+	{{ROUTER_INIT}}
+
+	// Start the server
+	port := "8080"
+	fmt.Printf("Service %s is running on port %s\n", "{{SERVICE_NAME}}", port)
+	{{SERVER_START}}
+}

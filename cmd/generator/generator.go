@@ -23,7 +23,6 @@ func getMicroservices(projectType string) []string {
 	}
 }
 
-// GenerateProject copies the selected template to the target directory
 func GenerateProject(projectType, projectName, database, httpRouter, authMethod string) {
 	templatePath := filepath.Join("templates", projectType)
 	targetPath := filepath.Join(".", projectName)
@@ -58,9 +57,54 @@ func GenerateProject(projectType, projectName, database, httpRouter, authMethod 
 		}
 	}
 
+	// Generate routes for each microservice
+	generateRoutes(projectType, targetPath, httpRouter)
+
+	// Generate main.go for each microservice
+	generateMicroserviceMainFiles(projectType, projectName, database, httpRouter)
+
+	// Generate Docker Compose File
+	generateDockerCompose(projectType, projectName, database)
+
 	replacePlaceholders(targetPath, projectName, database, httpRouter, authMethod)
 
 	color.Magenta("✅ Project %s has been successfully created!\n", projectName)
+}
+
+func generateMicroserviceMainFiles(projectType, projectName, database, httpRouter string) {
+	microservices := getMicroservices(projectType)
+
+	for _, service := range microservices {
+		servicePath := filepath.Join(projectName, service)
+		mainFilePath := filepath.Join(servicePath, "main.go")
+
+		// Read the template
+		templatePath := "cmd/built/main.go.tmpl"
+		content, err := os.ReadFile(templatePath)
+		if err != nil {
+			color.Red("❌ Failed to read template: %v", err)
+			return
+		}
+
+		// Dynamic imports and router setup
+		routerImport, routerInit, serverStart := getRouterInit(httpRouter)
+		databaseImport := getDatabaseImport(service, database) // Fixed this line
+
+		// Replace placeholders
+		updatedContent := strings.ReplaceAll(string(content), "{{PROJECT_NAME}}", projectName)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{SERVICE_NAME}}", service)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{DATABASE_IMPORT}}", databaseImport)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{ROUTER_IMPORT}}", routerImport)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{ROUTER_INIT}}", routerInit)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{SERVER_START}}", serverStart)
+
+		// Write main.go to each service
+		err = os.WriteFile(mainFilePath, []byte(updatedContent), 0644)
+		if err != nil {
+			color.Red("❌ Failed to create main.go for %s: %v", service, err)
+			return
+		}
+	}
 }
 
 // Copy all files from template to target directory
@@ -95,11 +139,15 @@ func replacePlaceholders(rootPath, projectName, database, httpRouter, authMethod
 		if err != nil {
 			return err
 		}
+		routerImport, routerInit, serverStart := getRouterInit(httpRouter)
 
 		updatedContent := strings.ReplaceAll(string(content), "{{PROJECT_NAME}}", projectName)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{DATABASE}}", database)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{HTTP_ROUTER}}", httpRouter)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{AUTH_METHOD}}", authMethod)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{ROUTER_IMPORT}}", routerImport)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{ROUTER_INIT}}", routerInit)
+		updatedContent = strings.ReplaceAll(updatedContent, "{{SERVER_START}}", serverStart)
 
 		segments := strings.Split(path, string(os.PathSeparator))
 		if len(segments) > 1 {

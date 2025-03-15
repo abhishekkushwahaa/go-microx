@@ -19,7 +19,7 @@ import (
 	"fmt"
 )
 
-func initDB() {
+func InitDB() {
 	{{if eq .Database "PostgreSQL"}}
 	dsn := "host=localhost user=root password=secret dbname={{.ProjectName}} sslmode=disable"
 	db, err := sql.Open("postgres", dsn)

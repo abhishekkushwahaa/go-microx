@@ -2,6 +2,7 @@ package generator
 
 import (
 	"bytes"
+	"fmt"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -53,4 +54,11 @@ func processDatabaseTemplate(templateFile, outputFile, projectName, database str
 		return err
 	}
 	return nil
+}
+
+func getDatabaseImport(serviceName, database string) string {
+	if database == "None" {
+		return ""
+	}
+	return fmt.Sprintf(`"%s/database"`, serviceName)
 }
