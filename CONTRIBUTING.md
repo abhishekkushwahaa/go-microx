@@ -43,7 +43,9 @@ This will help maintainers triage and address issues more effectively.
 
 - **Style and Consistency**: Follow the existing code style. Pay attention to naming conventions, indentation, and function structure. This helps keep the codebase clean and readable.
 
-- **Testing**: Ensure that the code passes all tests before submitting a PR. Run `go test` to ensure that the tests pass locally before you push your changes.
+- **Testing**: Ensure that the code passes all tests before submitting a PR. Use the provided `Makefile` to run tests and build the project:
+  - Run `make test` to ensure all tests pass.
+  - Run `make build` to verify the binary compiles correctly.
 
 - **Commit Messages**: Write clear, concise commit messages. Follow this convention:
   - Use the present tense (e.g., "Add new feature" instead of "Added new feature").

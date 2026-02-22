@@ -42,7 +42,6 @@ func getHTTPRoutes(projectType string) map[string][]string {
 	}
 }
 
-// generateRoutes creates route files for each microservice based on the selected HTTP router.
 func generateRoutes(projectType, targetPath, httpRouter string) {
 	routes := getHTTPRoutes(projectType)
 	for service, endpoints := range routes {
@@ -63,13 +62,12 @@ func generateRoutes(projectType, targetPath, httpRouter string) {
 
 		err := os.WriteFile(routesFile, []byte(routeContent.String()), 0644)
 		if err != nil {
-			color.Red("❌ Failed to create routes for %s: %v", service, err)
+			color.Red("Failed to create routes for %s: %v", service, err)
 			return
 		}
 	}
 }
 
-// httpRouterImport returns the import path based on the selected HTTP router.
 func httpRouterImport(router string) string {
 	switch router {
 	case "Gin":
@@ -87,7 +85,6 @@ func httpRouterImport(router string) string {
 	}
 }
 
-// httpRouterType returns the router type for each router.
 func httpRouterType(router string) string {
 	switch router {
 	case "Gin":
@@ -105,7 +102,6 @@ func httpRouterType(router string) string {
 	}
 }
 
-// httpRouterMethod returns the method used for registering routes.
 func httpRouterMethod(router string) string {
 	switch router {
 	case "Gin", "Chi":
@@ -119,7 +115,6 @@ func httpRouterMethod(router string) string {
 	}
 }
 
-// getRouterInit returns router initialization code based on the selected router.
 func getRouterInit(httpRouter string) (string, string, string) {
 	switch httpRouter {
 	case "Gin":
@@ -154,7 +149,6 @@ func getRouterInit(httpRouter string) (string, string, string) {
 	}
 }
 
-// PrintRoutes prints out all routes for the selected project type.
 func PrintRoutes(projectType string) {
 	routes := getHTTPRoutes(projectType)
 

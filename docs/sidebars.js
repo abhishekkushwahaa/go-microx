@@ -1,13 +1,16 @@
 module.exports = {
   tutorialSidebar: [
+    "intro",
     {
       type: "category",
-      label: "CLI",
-      items: ["cli", "usage"],
+      label: "Getting Started",
+      items: ["installation", "usage"],
     },
-    "intro",
-    "installation",
-    "project-structure",
+    {
+      type: "category",
+      label: "Guides",
+      items: ["templates", "project-structure"],
+    },
     "future-plans",
     "contributing",
   ],

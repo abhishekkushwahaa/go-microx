@@ -1,4 +1,4 @@
-# Walkthrough 🖥️
+# Walkthrough
 
 ### Example CLI Interaction
 

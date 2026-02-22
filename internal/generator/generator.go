@@ -27,87 +27,74 @@ func GenerateProject(projectType, projectName, database, httpRouter, authMethod 
 	templatePath := filepath.Join("templates", projectType)
 	targetPath := filepath.Join(".", projectName)
 
-	color.Cyan("📂 Creating project: %s", projectName)
-	color.Green("📦 Type: %s", projectType)
-	color.Yellow("🫙  Database: %s", database)
-	color.Blue("🌐 HTTP Router: %s", httpRouter)
-	color.White("🔑 Auth Method: %s", authMethod)
+	color.Cyan("Creating project: %s", projectName)
+	color.Green("Type: %s", projectType)
+	color.Yellow("Database: %s", database)
+	color.Blue("HTTP Router: %s", httpRouter)
+	color.White("Auth Method: %s", authMethod)
 
-	// Copy template files to target project
 	err := copyDirectory(templatePath, targetPath)
 	if err != nil {
-		color.Red("❌ Failed to create project: %v", err)
+		color.Red("Failed to create project: %v", err)
 		return
 	}
 
-	// Fetch microservices dynamically
 	microservices := getMicroservices(projectType)
 
 	if database != "None" {
 		for _, service := range microservices {
 			servicePath := filepath.Join(targetPath, service)
-			dbTemplate := filepath.Join("cmd", "built", "database.tmpl")
+			dbTemplate := filepath.Join("internal", "templates", "database.tmpl")
 			dbTarget := filepath.Join(servicePath, "database", "db.go")
 
 			if err := os.MkdirAll(filepath.Dir(dbTarget), os.ModePerm); err != nil {
-				color.Red("❌ Failed to create directories for %s: %v", service, err)
+				color.Red("Failed to create directories for %s: %v", service, err)
 				return
 			}
 			processDatabaseTemplate(dbTemplate, dbTarget, service, database)
 		}
 	}
 
-	// Generate routes for each microservice
 	generateRoutes(projectType, targetPath, httpRouter)
-
-	// Generate main.go for each microservice
-	generateMicroserviceMainFiles(projectType, projectName, database, httpRouter)
-
-	// Generate Docker Compose File
+	generateMicroserviceMainFiles(projectType, targetPath, database, httpRouter)
 	generateDockerCompose(projectType, projectName, database)
-
 	replacePlaceholders(targetPath, projectName, database, httpRouter, authMethod)
 
-	color.Magenta("✅ Project %s has been successfully created!\n", projectName)
+	color.Magenta("Project %s has been successfully created!\n", projectName)
 }
 
-func generateMicroserviceMainFiles(projectType, projectName, database, httpRouter string) {
+func generateMicroserviceMainFiles(projectType, projectPath, database, httpRouter string) {
 	microservices := getMicroservices(projectType)
 
 	for _, service := range microservices {
-		servicePath := filepath.Join(projectName, service)
+		servicePath := filepath.Join(projectPath, service)
 		mainFilePath := filepath.Join(servicePath, "main.go")
 
-		// Read the template
-		templatePath := "cmd/built/main.go.tmpl"
+		templatePath := "internal/templates/main.go.tmpl"
 		content, err := os.ReadFile(templatePath)
 		if err != nil {
-			color.Red("❌ Failed to read template: %v", err)
+			color.Red("Failed to read template: %v", err)
 			return
 		}
 
-		// Dynamic imports and router setup
 		routerImport, routerInit, serverStart := getRouterInit(httpRouter)
-		databaseImport := getDatabaseImport(service, database) // Fixed this line
+		databaseImport := getDatabaseImport(service, database)
 
-		// Replace placeholders
-		updatedContent := strings.ReplaceAll(string(content), "{{PROJECT_NAME}}", projectName)
+		updatedContent := strings.ReplaceAll(string(content), "{{PROJECT_NAME}}", filepath.Base(projectPath))
 		updatedContent = strings.ReplaceAll(updatedContent, "{{SERVICE_NAME}}", service)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{DATABASE_IMPORT}}", databaseImport)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{ROUTER_IMPORT}}", routerImport)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{ROUTER_INIT}}", routerInit)
 		updatedContent = strings.ReplaceAll(updatedContent, "{{SERVER_START}}", serverStart)
 
-		// Write main.go to each service
 		err = os.WriteFile(mainFilePath, []byte(updatedContent), 0644)
 		if err != nil {
-			color.Red("❌ Failed to create main.go for %s: %v", service, err)
+			color.Red("Failed to create main.go for %s: %v", service, err)
 			return
 		}
 	}
 }
 
-// Copy all files from template to target directory
 func copyDirectory(src, dst string) error {
 	return filepath.Walk(src, func(path string, info fs.FileInfo, err error) error {
 		if err != nil {
@@ -128,7 +115,6 @@ func copyDirectory(src, dst string) error {
 	})
 }
 
-// Replace placeholders in files
 func replacePlaceholders(rootPath, projectName, database, httpRouter, authMethod string) {
 	filepath.Walk(rootPath, func(path string, info fs.FileInfo, err error) error {
 		if err != nil || info.IsDir() {

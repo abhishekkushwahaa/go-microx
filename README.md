@@ -23,7 +23,7 @@
 To install go-microx, use the following command:
 
 ```sh
-go install github.com/abhishekkushwahaa/go-microx@latest
+go install github.com/abhishekkushwahaa/go-microx/cmd/go-microx@latest
 ```
 
 ## Usage
@@ -72,12 +72,12 @@ The CLI will guide you through project creation using **promptui**, displaying i
     OAuth
     API Key
 
-🚀 Creating project: myshop
-📦 Type: E-commerce
-🔌 Router: Gin
-🫙 Database: PostgreSQL
-🔐 Authentication: None
-✅ Project myshop has been successfully created!
+Creating project: myshop
+Type: E-commerce
+Router: Gin
+Database: PostgreSQL
+Authentication: None
+Project myshop has been successfully created!
 ```
 
 ### Available Project Templates

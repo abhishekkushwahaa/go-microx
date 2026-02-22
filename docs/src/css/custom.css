@@ -1,47 +1,140 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #6db2e8;
-  --ifm-color-primary-dark: #6db2e8;
-  --ifm-color-primary-darker: #6db2e8;
-  --ifm-color-primary-darkest: #6db2e8;
-  --ifm-color-primary-light: #6db2e8;
-  --ifm-color-primary-lighter: #6db2e8;
-  --ifm-color-primary-lightest: #6db2e8;
-  --ifm-code-font-size: 95%;
+  --ifm-color-primary: #007d9c;
+  --ifm-color-primary-dark: #00708c;
+  --ifm-color-primary-darker: #006a84;
+  --ifm-color-primary-darkest: #00576d;
+  --ifm-color-primary-light: #008ab3;
+  --ifm-color-primary-lighter: #0090bc;
+  --ifm-color-primary-lightest: #00a4d6;
+  --ifm-code-font-size: 90%;
+  --ifm-font-family-base:
+    "Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+  --ifm-font-family-monospace:
+    "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #6db2e8;
-  --ifm-color-primary-dark: #6db2e8;
-  --ifm-color-primary-darker: #6db2e8;
-  --ifm-color-primary-darkest: #6db2e8;
-  --ifm-color-primary-light: #6db2e8;
-  --ifm-color-primary-lighter: #6db2e8;
-  --ifm-color-primary-lightest: #6db2e8;
+  --ifm-color-primary: #00add8;
+  --ifm-color-primary-dark: #009cc2;
+  --ifm-color-primary-darker: #0094b8;
+  --ifm-color-primary-darkest: #007a97;
+  --ifm-color-primary-light: #00beed;
+  --ifm-color-primary-lighter: #00c7f8;
+  --ifm-color-primary-lightest: #20d4ff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-background-color: #0b1120;
 }
 
-/* Reduce space between logo and nav items */
-.navbar__items {
-  margin-left: 10px; /* Decrease further if needed */
+a, button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reduce the space after the logo */
+.navbar {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 0.75rem 1.5rem;
+}
+
+[data-theme="dark"] .navbar {
+  background-color: rgba(11, 17, 32, 0.7) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar__brand {
+  font-weight: 800;
+  font-size: 1.3rem;
+  transition: opacity 0.2s ease;
+}
+
+.navbar__brand:hover {
+  opacity: 0.8;
+}
+
 .navbar__logo {
-  margin-right: 4px; /* Smaller value for less space */
+  height: 2.5rem;
+  margin-right: 0.75rem;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Adjust the navbar inner container */
-.navbar__inner {
-  display: flex;
-  align-items: center;
-  gap: 0px; /* Ensure no extra space */
+.navbar__logo:hover {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.navbar__item {
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.navbar__item:hover {
+  background-color: rgba(0, 125, 156, 0.1);
+  color: var(--ifm-color-primary) !important;
+}
+
+[data-theme="dark"] .navbar__item:hover {
+  background-color: rgba(0, 173, 216, 0.1);
+}
+
+.footer {
+  background-color: #0b1120 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4rem 0 2rem;
+}
+
+[data-theme="light"] .footer {
+  background-color: #f8fafc !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
+}
+
+.footer__title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+[data-theme="light"] .footer__title {
+  color: #0f172a;
+}
+
+.footer__link-item {
+  color: #94a3b8 !important;
+  transition: all 0.2s ease;
+  padding: 0.25rem 0;
+  display: inline-block;
+}
+
+.footer__link-item:hover {
+  color: #00add8 !important;
+  transform: translateX(5px);
+}
+
+[data-theme="light"] .footer__link-item {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .footer__link-item:hover {
+  color: #007d9c !important;
+}
+
+.footer__copyright {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+[data-theme="light"] .footer__copyright {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
 }

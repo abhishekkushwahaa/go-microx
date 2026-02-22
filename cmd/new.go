@@ -5,13 +5,12 @@ import (
 	"log"
 	"os"
 
-	"github.com/abhishekkushwahaa/go-microx/cmd/generator"
+	"github.com/abhishekkushwahaa/go-microx/internal/generator"
 	"github.com/fatih/color"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
 
-// Initialize the "new" command
 var newCmd = &cobra.Command{
 	Use:   "new",
 	Short: "Create a new microservices project",
@@ -26,7 +25,6 @@ var newCmd = &cobra.Command{
 	},
 }
 
-// Version command
 const version = "v1.0.0"
 
 var vCmd = &cobra.Command{
@@ -42,19 +40,18 @@ func init() {
 	rootCmd.AddCommand(vCmd)
 }
 
-// Prompt user to select a project type
 func selectProjectType() string {
 	templates := []string{"E-commerce", "Video-Streaming", "Food-Delivery", "Custom"}
 
 	prompt := promptui.Select{
-		Label:  color.HiCyanString("💡 Select a project template:"),
+		Label:  color.HiCyanString("Select a project template:"),
 		Items:  templates,
 		Stdout: os.Stderr,
 	}
 
 	_, result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Selection failed: %v", err))
+		log.Fatal(color.RedString("Selection failed: %v", err))
 	}
 
 	if result == "Custom" {
@@ -65,7 +62,6 @@ func selectProjectType() string {
 	return result
 }
 
-// Prompt user to enter a custom project template name
 func getCustomProjectTemplate() string {
 	prompt := promptui.Prompt{
 		Label:  color.HiBlueString("Enter custom project template name:"),
@@ -74,13 +70,12 @@ func getCustomProjectTemplate() string {
 
 	result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Custom template input failed: %v", err))
+		log.Fatal(color.RedString("Custom template input failed: %v", err))
 	}
 
 	return result
 }
 
-// Prompt user to enter a project name
 func getProjectName() string {
 	prompt := promptui.Prompt{
 		Label:  color.HiBlueString("Enter project name:"),
@@ -89,13 +84,12 @@ func getProjectName() string {
 
 	result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Project name input failed: %v", err))
+		log.Fatal(color.RedString("Project name input failed: %v", err))
 	}
 
 	return result
 }
 
-// Prompt user to select a database
 func selectDatabase() string {
 	databases := []string{"PostgreSQL", "MongoDB", "MySQL", "SQLite", "None"}
 
@@ -107,7 +101,7 @@ func selectDatabase() string {
 
 	_, result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Database selection failed: %v", err))
+		log.Fatal(color.RedString("Database selection failed: %v", err))
 	}
 
 	if result == "None" {
@@ -117,7 +111,6 @@ func selectDatabase() string {
 	return result
 }
 
-// Prompt user to select an HTTP router
 func selectHTTPRouter() string {
 	routers := []string{"Gin", "Fiber", "Chi", "Echo", "Mux", "Custom"}
 
@@ -129,7 +122,7 @@ func selectHTTPRouter() string {
 
 	_, result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Router selection failed: %v", err))
+		log.Fatal(color.RedString("Router selection failed: %v", err))
 	}
 
 	if result == "Custom" {
@@ -140,7 +133,6 @@ func selectHTTPRouter() string {
 	return result
 }
 
-// Prompt user to enter a custom HTTP router name
 func getCustomHTTPRouter() string {
 	prompt := promptui.Prompt{
 		Label:  color.HiMagentaString("Enter custom HTTP router name:"),
@@ -149,13 +141,12 @@ func getCustomHTTPRouter() string {
 
 	result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Custom router input failed: %v", err))
+		log.Fatal(color.RedString("Custom router input failed: %v", err))
 	}
 
 	return result
 }
 
-// Prompt user to select an authentication method
 func selectAuthMethod() string {
 	authMethods := []string{"None", "JWT", "OAuth", "API Key"}
 
@@ -167,7 +158,7 @@ func selectAuthMethod() string {
 
 	_, result, err := prompt.Run()
 	if err != nil {
-		log.Fatal(color.RedString("❌ Authentication selection failed: %v", err))
+		log.Fatal(color.RedString("Authentication selection failed: %v", err))
 	}
 
 	if result == "None" {

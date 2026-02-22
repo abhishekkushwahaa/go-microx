@@ -13,7 +13,6 @@ func generateDockerCompose(projectType, projectName, database string) {
 	microservices := getMicroservices(projectType)
 	composePath := filepath.Join(projectName, "docker-compose.yml")
 
-	// Start building the docker-compose file
 	var composeContent strings.Builder
 	composeContent.WriteString("version: '3.8'\n\nservices:\n")
 
@@ -27,7 +26,6 @@ func generateDockerCompose(projectType, projectName, database string) {
 		composeContent.WriteString("    depends_on:\n")
 		composeContent.WriteString("      - " + service + "-db\n\n")
 
-		// Database container (optional)
 		if database != "None" {
 			composeContent.WriteString(fmt.Sprintf("  %s-db:\n", service))
 			composeContent.WriteString("    image: ")
@@ -54,15 +52,13 @@ func generateDockerCompose(projectType, projectName, database string) {
 		}
 	}
 
-	// Write to docker-compose.yml
 	err := os.WriteFile(composePath, []byte(composeContent.String()), 0644)
 	if err != nil {
-		color.Red("❌ Failed to create docker-compose.yml: %v", err)
+		color.Red("Failed to create docker-compose.yml: %v", err)
 		return
 	}
 }
 
-// Dynamic Port Assignment (to avoid conflicts)
 func getPort(service string) int {
 	portMap := map[string]int{
 		"user-service":           8081,
@@ -81,7 +77,6 @@ func getPort(service string) int {
 	return portMap[service]
 }
 
-// Dynamic DB Port Assignment
 func getDBPort(service string) int {
 	return getPort(service) + 1000
 }

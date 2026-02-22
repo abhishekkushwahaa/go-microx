@@ -1,40 +1,39 @@
-import { Cpu, Rocket, Layers, Code2, ShieldCheck, Zap } from "lucide-react";
+import { Code2, Cpu, Layers, Rocket, ShieldCheck, Zap } from "lucide-react";
 import "./HomepageFeatures.css";
 
 const features = [
   {
-    title: "Instant Setup",
+    title: "Industry Templates",
     icon: Layers,
     description:
-      "Spin up microservices instantly with GoMicrox's powerful scaffolding.",
+      "Ready-to-use templates for E-commerce, Video Streaming, and Food Delivery architectures.",
   },
   {
-    title: "Blazing Fast Deployment",
+    title: "Interactive CLI",
     icon: Rocket,
-    description: "Deploy production-ready microservices in just a few clicks.",
+    description: "Launch your project with an intuitive wizard. No more hunting through documentation for flags.",
   },
   {
-    title: "Optimized Performance",
+    title: "Database Freedom",
     icon: Cpu,
     description:
-      "Leverage Golang’s speed for low-latency, high-performance apps.",
+      "Seamless integration with PostgreSQL, MySQL, MongoDB, and SQLite out of the box.",
   },
   {
-    title: "Rock-Solid Security",
-    icon: ShieldCheck,
-    description:
-      "Built-in security ensures your architecture is always protected.",
-  },
-  {
-    title: "Seamless Integrations",
-    icon: Code2,
-    description: "Integrate with Docker, Kubernetes, and CI/CD out of the box.",
-  },
-  {
-    title: "Lightning Fast Prototyping",
+    title: "Router Selection",
     icon: Zap,
     description:
-      "Kickstart projects with pre-built templates and reduce dev time.",
+      "Choose from Gin, Fiber, Echo, or Chi. Use the framework that fits your team's expertise.",
+  },
+  {
+    title: "Production Ready",
+    icon: ShieldCheck,
+    description: "Generates clean, modular code with Docker and Docker Compose support for easy deployment.",
+  },
+  {
+    title: "Open Source",
+    icon: Code2,
+    description: "Community driven and open for contributions. Extend it to fit your unique microservices needs.",
   },
 ];
 
@@ -42,8 +41,8 @@ export default function HomepageFeatures() {
   return (
     <section className="features-section">
       <h2 className="features-title">
-        Supercharge Your Microservices with{" "}
-        <span className="highlight">GoMicrox</span>
+        Build Scalable Architectures with{" "}
+        <span className="highlight">go-microx</span>
       </h2>
 
       <div className="features-grid">

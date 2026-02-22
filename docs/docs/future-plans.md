@@ -1,4 +1,4 @@
-# Upcoming 🔮
+# Future Roadmap
 
 - More Industry Templates (FinTech, SaaS, IoT, Healthcare)
 - gRPC Integration & WebAuthn Authentication

@@ -1,36 +1,21 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
-
 import { themes as prismThemes } from "prism-react-renderer";
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "Gomicrox",
-  tagline: "Gomicrox are cool",
-  favicon: "img/logo.png",
+  title: "go-microx",
+  tagline: "The ultimate CLI tool to scaffold production-ready microservices in Go.",
+  favicon: "img/logo4.png",
 
-  // Set the production url of your site here
   url: "https://gomicrox.abhishekkushwaha.tech",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "abhishekkushwaha", // Usually your GitHub org/user name.
-  projectName: "Gomicrox", // Usually your repo name.
+  organizationName: "abhishekkushwaha",
+  projectName: "go-microx",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -43,9 +28,7 @@ const config = {
       ({
         docs: {
           sidebarPath: "./sidebars.js",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/abhishekkushwahaa/go-microx",
+          editUrl: "https://github.com/abhishekkushwahaa/go-microx/tree/main/docs/",
         },
         blog: {
           showReadingTime: true,
@@ -53,10 +36,7 @@ const config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/abhishekkushwahaa/go-microx",
-          // Useful options to enforce blogging best practices
+          editUrl: "https://github.com/abhishekkushwahaa/go-microx/tree/main/docs/",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -71,19 +51,21 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: "img/docusaurus-social-card.jpg",
+      metadata: [
+        { name: "keywords", content: "golang, microservices, cli, scaffolding, backend, gin, gRPC, docker" },
+      ],
       navbar: {
         logo: {
-          alt: "Gomicrox",
-          src: "img/logo.png",
+          alt: "go-microx logo",
+          src: "img/logo3.png",
         },
         items: [
           {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            label: "Documentation",
+            label: "Docs",
           },
           {
             href: "https://github.com/abhishekkushwahaa/go-microx",
@@ -93,45 +75,40 @@ const config = {
         ],
       },
       footer: {
-        style: "light",
+        style: "dark",
         links: [
           {
             title: "Docs",
             items: [
-              {
-                label: "Tutorial",
-                to: "/docs/intro",
-              },
+              { label: "Getting Started", to: "/docs/intro" },
+              { label: "Installation", to: "/docs/installation" },
+              { label: "Usage Guide", to: "/docs/usage" },
+              { label: "Built-in Templates", to: "/docs/intro" },
             ],
           },
           {
-            title: "Media",
+            title: "Community",
             items: [
-              {
-                label: "Linkedin",
-                href: "https://www.linkedin.com/in/abhishekkushwahaa",
-              },
-              {
-                label: "X",
-                href: "https://x.com/AbhishekKushwaa",
-              },
+              { label: "GitHub", href: "https://github.com/abhishekkushwahaa/go-microx" },
+              { label: "LinkedIn", href: "https://www.linkedin.com/in/abhishekkushwahaa" },
+              { label: "X (Twitter)", href: "https://x.com/AbhishekKushwaa" },
             ],
           },
           {
-            title: "More",
+            title: "Resources",
             items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/abhishekkushwahaa/go-microx",
-              },
+              { label: "Go (Golang)", href: "https://go.dev" },
+              { label: "Docker Docs", href: "https://docs.docker.com" },
+              { label: "Microservices Guide", href: "https://microservices.io" },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Gomicrox, Inc. Built with Gomicrox.`,
+        copyright: `Made with ❤️ by Abhishek Kushwaha. Copyright © ${new Date().getFullYear()} go-microx. Built with Docusaurus.`,
       },
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
+        additionalLanguages: ["go", "bash", "yaml", "docker"],
       },
     }),
 };
