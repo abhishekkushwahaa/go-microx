@@ -1,64 +1,110 @@
 # Contributing to go-microx
 
-We appreciate your interest in contributing to **go-microx**! Whether you're submitting a bug report, suggesting a new feature, or improving the documentation, your contribution is valuable.
+First off, thank you for considering contributing to **go-microx**! It's people like you who make this project such a great tool for the Go community.
 
-Before you begin, please take a moment to read through the guidelines below to ensure a smooth and consistent contribution process.
+This document provides guidelines and best practices to help you contribute to the project effectively.
 
 ## Table of Contents
 
-- [Contributing to go-microx](#contributing-to-go-microx)
-  - [Table of Contents](#table-of-contents)
-  - [Design Principles](#design-principles)
-  - [Reporting Issues](#reporting-issues)
-  - [Contributing Code with Pull Requests](#contributing-code-with-pull-requests)
-    - [Requirements](#requirements)
-  - [Licensing](#licensing)
+- [Code of Conduct](#code-of-conduct)
+- [How Can I Contribute?](#how-can-i-contribute)
+  - [Reporting Bugs](#reporting-bugs)
+  - [Suggesting Enhancements](#suggesting-enhancements)
+  - [Code Contributions](#code-contributions)
+- [Development Workflow](#-development-workflow)
+  - [Prerequisites](#prerequisites)
+  - [Local Setup](#local-setup)
+- [Coding Standards](#-coding-standards)
+- [Pull Request Process](#-pull-request-process)
+- [Commit Message Guidelines](#-commit-message-guidelines)
+- [License](#-license)
 
-## Design Principles
+## Code of Conduct
 
-Contributions to **go-microx** should align with the project’s design principles:
+We are committed to providing a welcoming and inspiring community for all. By participating in this project, you agree to abide by our Code of Conduct (based on the [Contributor Covenant](https://www.contributor-covenant.org/version/2/1/code_of_conduct/)).
 
-- **Maintain backwards compatibility** whenever possible. Ensure that changes do not break existing features or functionality unless absolutely necessary.
-- **Follow clean code practices**. Code should be readable, maintainable, and well-documented.
-- **Keep the scope clear and focused**. If you're implementing a feature, try to ensure it’s narrowly scoped so it can be merged and tested quickly.
+## How Can I Contribute?
 
-## Reporting Issues
+### Reporting Bugs
 
-If you encounter a bug, have questions, or want to discuss new features, please [file an issue](https://github.com/abhishekkushwahaa/go-microx/issues). When creating an issue, please provide the following:
+If you find a bug, please help us by [opening an issue](https://github.com/abhishekkushwahaa/go-microx/issues). A good bug report includes:
 
-- A clear description of the problem or feature request.
-- Steps to reproduce the bug, if applicable.
-- Any logs, screenshots, or error messages that can help us understand the issue.
+- A clear, descriptive title.
+- Steps to reproduce the problem.
+- Expected vs. actual behavior.
+- Screenshots or log outputs if applicable.
+- Your environment details (OS, Go version).
 
-This will help maintainers triage and address issues more effectively.
+### Suggesting Enhancements
 
-## Contributing Code with Pull Requests
+We're always looking for ways to improve! To suggest an enhancement, please open an issue and describe:
 
-**go-microx** uses [GitHub pull requests](https://github.com/abhishekkushwahaa/go-microx/pulls) for contributions. If you have a feature or bug fix you’d like to contribute, feel free to fork the repository, make your changes, and submit a pull request (PR).
+- The problem this enhancement solves.
+- A detailed description of the proposed feature.
+- Potential implementation ideas (if any).
 
-### Requirements
+### Code Contributions
 
-- **Documentation**: All commands, features, and updates should be properly documented. This ensures that other developers understand how to use the feature or functionality.
-- **Unit Testing**: Any new functionality should have accompanying unit tests. This ensures that the new feature works as expected and does not break existing functionality.
+If you're looking to dive into the code:
 
-- **Style and Consistency**: Follow the existing code style. Pay attention to naming conventions, indentation, and function structure. This helps keep the codebase clean and readable.
+1. Browse the [issues](https://github.com/abhishekkushwahaa/go-microx/issues) for any tasks labeled `help wanted` or `good first issue`.
+2. Comment on the issue to let us know you're working on it.
+3. If it's a new feature, please open an issue first to discuss the design before starting work.
 
-- **Testing**: Ensure that the code passes all tests before submitting a PR. Use the provided `Makefile` to run tests and build the project:
-  - Run `make test` to ensure all tests pass.
-  - Run `make build` to verify the binary compiles correctly.
+## Development Workflow
 
-- **Commit Messages**: Write clear, concise commit messages. Follow this convention:
-  - Use the present tense (e.g., "Add new feature" instead of "Added new feature").
-  - Provide a short, meaningful description of what the commit does.
+### Prerequisites
 
-Once your PR is ready, submit it and we'll review your contribution. If everything looks good, it will be merged.
+- **Go**: v1.22 or higher.
+- **Git**: For version control.
+- **Make**: For running project commands (optional but recommended).
 
-## Licensing
+### Local Setup
 
-By contributing to **go-microx**, you agree to license your contributions under the terms of the project's [MIT License](https://github.com/abhishekkushwahaa/go-microx/blob/main/LICENSE).
+1. **Fork the repository** on GitHub.
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/go-microx.git
+   cd go-microx
+   ```
+3. **Add the upstream remote**:
+   ```bash
+   git remote add upstream https://github.com/abhishekkushwahaa/go-microx.git
+   ```
+4. **Create a branch** for your work:
+   ```bash
+   git checkout -b feature/your-feature-name
+   # or
+   git checkout -b bugfix/your-bug-name
+   ```
 
-You will be asked to confirm this licensing when submitting your pull request.
+## Pull Request Process
+
+1. Ensure your code satisfies the **Coding Standards**.
+2. Update the `README.md` or `docs/` if you've added new features or changed behaviors.
+3. Verify that all tests pass: `go test ./...`.
+4. Push your changes to your fork.
+5. Submit a [Pull Request](https://github.com/abhishekkushwahaa/go-microx/pulls) against the `main` branch.
+6. A maintainer will review your PR. Be prepared to address feedback!
+
+## Commit Message Guidelines
+
+We prefer clear, concise commit messages following the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+- `feat:` for new features.
+- `fix:` for bug fixes.
+- `docs:` for documentation changes.
+- `style:` for formatting/styling (no logic changes).
+- `refactor:` for code changes that neither fix a bug nor add a feature.
+- `test:` for adding or updating tests.
+- `chore:` for updating build tasks, dependencies, etc.
+
+Example: `feat(cli): add interactive auth selection`
+
+## License
+
+By contributing to **go-microx**, you agree that your contributions will be licensed under its [MIT License](LICENSE).
 
 ---
 
-Thank you for contributing! We look forward to working with you to make **go-microx** even better.
+Thank you for your contribution!
