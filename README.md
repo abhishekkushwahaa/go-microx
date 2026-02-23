@@ -11,8 +11,6 @@
 [![X](https://img.shields.io/badge/X-000000?style=flat-square&logo=x)](https://x.com/AbhishekKushwaa)
 [![Docs](https://img.shields.io/badge/Documentation-FF4500?style=flat-square)](https://go-microx.vercel.app/docs/intro)
 
----
-
 **go-microx** is a high-performance CLI tool built to eliminate the complexity of bootstrapping microservices architectures in Go.
 Scaffold industry-ready project structures in minutes—not hours.
 
@@ -130,8 +128,6 @@ We love community contributions! Check out our [Contributing Guidelines](CONTRIB
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
----
 
 <div align="center">
 Built with interest by <a href="https://github.com/abhishekkushwahaa">Abhishek Kushwaha</a>
